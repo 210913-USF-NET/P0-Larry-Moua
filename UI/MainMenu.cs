@@ -22,6 +22,7 @@ namespace UI
 
                     /*
                     case "{email address}
+                    // then GO to Customer Menu
                     */
 
                     case "admin":
