@@ -1,5 +1,7 @@
 using System;
 using Models;
+using RBBL;
+using DL;
 
 namespace UI
 {
@@ -12,7 +14,7 @@ namespace UI
             do
             {
                 Console.WriteLine("Welcome to Kpop Snapshot!");
-                //Console.WriteLine("Please login with your email address");
+                Console.WriteLine("Please login with your email address or type 'x' to exit.");
                 Console.WriteLine("[x] Exit");
 
                 input = Console.ReadLine();
@@ -27,7 +29,7 @@ namespace UI
 
                     case "admin":
                         Console.WriteLine("Welcome Admin!");
-                        exit = true;
+                        MenuFactory.GetMenu("admin").Start();
                     break;
 
                     case "x":
