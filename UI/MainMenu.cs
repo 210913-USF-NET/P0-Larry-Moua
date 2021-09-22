@@ -15,6 +15,7 @@ namespace UI
             {
                 Console.WriteLine("Welcome to Kpop Snapshot!");
                 Console.WriteLine("Please login with your email address or type 'x' to exit.");
+                Console.WriteLine("[0] New Account");
                 Console.WriteLine("[x] Exit");
 
                 input = Console.ReadLine();
@@ -30,6 +31,11 @@ namespace UI
                     case "admin":
                         Console.WriteLine("Welcome Admin!");
                         MenuFactory.GetMenu("admin").Start();
+                    break;
+
+                    case "0":
+                        Console.WriteLine("Creating new account!");
+                        MenuFactory.GetMenu("customer").Start();
                     break;
 
                     case "x":

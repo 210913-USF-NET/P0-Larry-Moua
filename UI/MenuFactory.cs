@@ -11,8 +11,8 @@ namespace UI
             {
                 case "main":
                     return new MainMenu();
-                //case "customer":
-                    //return new CustomerMenu();
+                case "customer":
+                    return new MainMenu();
                 case "admin":
                     return new MainMenu();
                 default:
