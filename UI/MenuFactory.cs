@@ -21,7 +21,7 @@ namespace UI
                 case "main":
                     return new MainMenu();
                 case "new-customer":
-                    return new MainMenu();
+                    return new NewCustomerMenu(new BL(new DBRepo(context)), new NewCustomerService());
                 case "customer":
                     return new CustomerMenu(new BL(new DBRepo(context)), new CustomerService());
                 case "admin":
