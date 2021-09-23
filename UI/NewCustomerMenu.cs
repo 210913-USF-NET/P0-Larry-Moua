@@ -62,14 +62,5 @@ namespace UI
                 }
             } while (!exit);
         }
-
-        public void AddCustomer()
-        {
-            List<Customer> allCustom = _bl.GetAllCustomers();
-            foreach (Customer custom in allCustom)
-            {
-                Console.WriteLine(custom.ToString());
-            }
-        }
     }
 }
