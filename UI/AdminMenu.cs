@@ -48,13 +48,34 @@ namespace UI
             } while (!exit);
         }
 
-        private void ViewAllCustomers()
+        public void ViewAllCustomers()
         {
+            string input2 = "";
             List<Customer> allCustom = _bl.GetAllCustomers();
             foreach (Customer custom in allCustom)
             {
                 Console.WriteLine(custom.ToString());
+                Console.WriteLine(custom.EmailLogin());
             }
+
+            input2 = Console.ReadLine();
+
+            Console.WriteLine("----------");
+
+            foreach (Customer custom in allCustom)
+            {
+                if (input2 == custom.EmailLogin())
+                {
+                    Console.WriteLine("Yes!");
+                } else
+                {
+                    Console.WriteLine("No!");
+                }
+            }
+
+            // input2 = Console.ReadLine();
+
+                    
         }
 
 

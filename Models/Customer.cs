@@ -50,5 +50,10 @@ namespace Models
             return $"Id: {this.Id} Name: {this.Name}, Email: {this.Email}, Address: {this.Address}, Points: {this.Points}";
         }
 
+        public string EmailLogin()
+        {
+            return $"{this.Email}";
+        }
+
     }
 }
