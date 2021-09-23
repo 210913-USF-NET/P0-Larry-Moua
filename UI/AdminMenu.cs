@@ -55,7 +55,6 @@ namespace UI
             foreach (Customer custom in allCustom)
             {
                 Console.WriteLine(custom.ToString());
-                Console.WriteLine(custom.EmailLogin());
             }
 
             input2 = Console.ReadLine();

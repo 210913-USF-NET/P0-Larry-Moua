@@ -2,6 +2,7 @@ using System;
 using Models;
 using RBBL;
 using DL;
+using System.Collections.Generic;
 
 namespace UI
 {
@@ -14,8 +15,9 @@ namespace UI
             do
             {
                 Console.WriteLine("Welcome to Kpop Snapshot!");
-                Console.WriteLine("Please login with your email address or type 'x' to exit.");
+                Console.WriteLine("Please choose an option or type 'x' to exit.");
                 Console.WriteLine("[0] New Account");
+                Console.WriteLine("[1] Log In");
                 Console.WriteLine("[x] Exit");
 
                 input = Console.ReadLine();
@@ -23,10 +25,6 @@ namespace UI
                 switch (input)
                 {
 
-                    /*
-                    case "{email address}
-                    // then GO to Customer Menu
-                    */
 
                     case "admin":
                         Console.WriteLine("Welcome Admin!");
@@ -35,6 +33,10 @@ namespace UI
 
                     case "0":
                         Console.WriteLine("Creating new account!");
+                        MenuFactory.GetMenu("new-customer").Start();
+                    break;
+                    
+                    case "1":
                         MenuFactory.GetMenu("customer").Start();
                     break;
 

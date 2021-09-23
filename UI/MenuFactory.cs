@@ -20,8 +20,10 @@ namespace UI
             {
                 case "main":
                     return new MainMenu();
-                case "customer":
+                case "new-customer":
                     return new MainMenu();
+                case "customer":
+                    return new CustomerMenu(new BL(new DBRepo(context)), new CustomerService());
                 case "admin":
                     return new AdminMenu(new BL(new DBRepo(context)), new AdminService());
                 default:
