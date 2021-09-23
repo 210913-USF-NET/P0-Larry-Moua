@@ -33,6 +33,7 @@ namespace UI
                         break;
 
                     case "1":
+                        ViewAllCustomers();
                         break;
                     
                     case "x":
@@ -45,6 +46,15 @@ namespace UI
                 }
 
             } while (!exit);
+        }
+
+        private void ViewAllCustomers()
+        {
+            List<Customer> allCustom = _bl.GetAllCustomers();
+            foreach (Customer custom in allCustom)
+            {
+                Console.WriteLine(custom.ToString());
+            }
         }
 
 

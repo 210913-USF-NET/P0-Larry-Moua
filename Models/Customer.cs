@@ -16,12 +16,12 @@ namespace Models
 
         private string _name;
 
-        public string name
+        public string Name
         {
             get { return _name;}
             set
             {
-                Regex pattern = new Regex("^[a-zA-Z]+$");
+                Regex pattern = new Regex("^[a-zA-Z ]+$");
 
                 if(value.Length == 0)
                 {
@@ -40,10 +40,15 @@ namespace Models
             }
         }
 
-        public int id { get; set; }
-        public string email { get; set; }
-        public string address { get; set; }
-        public int points { get; set; }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public int Points { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id: {this.Id} Name: {this.Name}, Email: {this.Email}, Address: {this.Address}, Points: {this.Points}";
+        }
 
     }
 }

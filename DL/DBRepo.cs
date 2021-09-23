@@ -34,12 +34,13 @@ namespace DL
             return _context.Customers.Select(
                 customers => new Model.Customer()
                 {
-                    id = customers.Id,
-                    name = customers.Name,
-                    email = customers.Email,
-                    address = customers.Address,
-                    points = customers.Points
-                }).ToList();
+                    Id = customers.Id,
+                    Name = customers.Name,
+                    Email = customers.Email,
+                    Address = customers.Address,
+                    Points = customers.Points
+                }
+            ).ToList();
         }
     }
 }
