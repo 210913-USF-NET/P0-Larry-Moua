@@ -17,19 +17,22 @@ namespace DL
             _context = context;
         }
 
-        // public Model.Customer AddCustomer(Model.Customer custom)
-        // {
-            
-        // }
+        public Model.Customer AddCustomer(Model.Customer custom)
+        {
+            throw new NotImplementedException();
 
-        // public List<Model.Customer> GetAllCustomers()
-        // {
+        }
 
-        // }
+        public List<Model.Customer> GetAllCustomers()
+        {
+            throw new NotImplementedException();
 
-        // public Model.Customer UpdateCustomer(Model.Customer customToUpdate)
-        // {
+        }
 
-        // }
+        public Model.Customer UpdateCustomer(Model.Customer customToUpdate)
+        {
+            throw new NotImplementedException();
+
+        }
     }
 }
