@@ -19,7 +19,25 @@ namespace DL
 
         public Model.Customer AddCustomer(Model.Customer custom)
         {
-            throw new NotImplementedException();
+            Entity.Customer customToAdd = new Entity.Customer(){
+                Name = custom.Name,
+                Email = custom.Email,
+                Address = custom.Address,
+                Points = 0
+            };
+
+            customToAdd = _context.Add(customToAdd).Entity;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new Model.Customer()
+            {
+                Id = customToAdd.Id,
+                Name = customToAdd.Name,
+                Email = customToAdd.Email,
+                Address = customToAdd.Address,
+                Points = customToAdd.Points
+            };
 
         }
 
