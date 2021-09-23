@@ -40,7 +40,8 @@ namespace DL.Entities
                 entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Albums)
                     .HasForeignKey(d => d.ArtistId)
-                    .HasConstraintName("FK__Album__ArtistID__797309D9");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Album__ArtistID__1BC821DD");
             });
 
             modelBuilder.Entity<Artist>(entity =>
@@ -79,7 +80,8 @@ namespace DL.Entities
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Idols)
                     .HasForeignKey(d => d.GroupId)
-                    .HasConstraintName("FK__Idols__GroupID__76969D2E");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Idols__GroupID__18EBB532");
             });
 
             modelBuilder.Entity<Photocard>(entity =>
@@ -102,17 +104,20 @@ namespace DL.Entities
                 entity.HasOne(d => d.Album)
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.AlbumId)
-                    .HasConstraintName("FK__Photocard__Album__7E37BEF6");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Photocard__Album__208CD6FA");
 
                 entity.HasOne(d => d.GroupName)
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.GroupNameId)
-                    .HasConstraintName("FK__Photocard__Group__7D439ABD");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Photocard__Group__1F98B2C1");
 
                 entity.HasOne(d => d.StageName)
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.StageNameId)
-                    .HasConstraintName("FK__Photocard__Stage__7C4F7684");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Photocard__Stage__1EA48E88");
             });
 
             OnModelCreatingPartial(modelBuilder);
