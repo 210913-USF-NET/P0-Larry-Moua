@@ -13,7 +13,7 @@ namespace UI
             string connectionString = File.ReadAllText(@"../connectionString.txt");
 
             DbContextOptions<kpopsnapshotdbContext> options = new DbContextOptionsBuilder<kpopsnapshotdbContext>().UseSqlServer(connectionString).Options;
-            
+
             kpopsnapshotdbContext context = new kpopsnapshotdbContext(options);
 
             switch (menuString.ToLower())
@@ -23,7 +23,7 @@ namespace UI
                 case "customer":
                     return new MainMenu();
                 case "admin":
-                    return new MainMenu();
+                    return new AdminMenu(new BL(new DBRepo(context)), new AdminService());
                 default:
                     return null;
             }

@@ -7,13 +7,12 @@ namespace Models
 {
     public class Customer
     {
+        public Customer() {}
 
-        public Customer(string name, string email, string address, int points)
+        public Customer(int id, string name, string email, string address, int points)
         {
 
         }
-
-        public int ID { get; set;}
 
         private string _name;
 
@@ -40,6 +39,11 @@ namespace Models
                 }
             }
         }
+
+        public int id { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
+        public int points { get; set; }
 
     }
 }

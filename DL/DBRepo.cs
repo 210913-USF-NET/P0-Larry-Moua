@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DL
 {
-    public class DBRepo //: IRepo
+    public class DBRepo : IRepo
     {
         private Entity.kpopsnapshotdbContext _context;
 
@@ -23,16 +23,23 @@ namespace DL
 
         }
 
-        public List<Model.Customer> GetAllCustomers()
+        public Model.Customer UpdateCustomer(Model.Customer customToUpdate)
         {
             throw new NotImplementedException();
 
         }
 
-        public Model.Customer UpdateCustomer(Model.Customer customToUpdate)
+        public List<Model.Customer> GetAllCustomers()
         {
-            throw new NotImplementedException();
-
+            return _context.Customers.Select(
+                customers => new Model.Customer()
+                {
+                    id = customers.Id,
+                    name = customers.Name,
+                    email = customers.Email,
+                    address = customers.Address,
+                    points = customers.Points
+                }).ToList();
         }
     }
 }
