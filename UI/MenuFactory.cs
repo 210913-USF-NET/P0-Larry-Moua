@@ -1,5 +1,8 @@
 using DL;
 using RBBL;
+using DL.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace UI
 {
@@ -7,6 +10,12 @@ namespace UI
     {
         public static IMenu GetMenu(string menuString)
         {
+            string connectionString = File.ReadAllText(@"../connectionString.txt");
+
+            DbContextOptions<kpopsnapshotdbContext> options = new DbContextOptionsBuilder<kpopsnapshotdbContext>().UseSqlServer(connectionString).Options;
+            
+            kpopsnapshotdbContext context = new kpopsnapshotdbContext(options);
+
             switch (menuString.ToLower())
             {
                 case "main":
