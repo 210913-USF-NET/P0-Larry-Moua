@@ -41,12 +41,19 @@ namespace UI
                 Console.WriteLine($"NAME: {newName}");
                 Console.WriteLine($"EMAIL: {newEmail}");
                 Console.WriteLine($"ADDRESS: {newAddress}");
-                Console.WriteLine("Is this correct?");
+                Console.WriteLine("Is this correct? [y] to confirm or [n] to reset");
 
                 input = Console.ReadLine();
 
                 switch(input){
                     case "y":
+                        Customer newCustom = new Customer();
+                        newCustom.Name = newName;
+                        newCustom.Email = newEmail;
+                        newCustom.Address = newAddress;
+                        newCustom.Points = 0;
+                        Customer addedCustom = _bl.AddCustomer(newCustom);
+                        Console.WriteLine($"You created {addedCustom}");
                         Console.WriteLine("New user created! Please log in with your email address.");
                         exit = true;
                     break;

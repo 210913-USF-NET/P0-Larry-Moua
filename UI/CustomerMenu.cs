@@ -28,12 +28,18 @@ namespace UI
 
                 input2 = Console.ReadLine();
 
+                Console.WriteLine("--------------------");
+                Console.WriteLine("Loading...");
+                Console.WriteLine("--------------------");
+
                 List<Customer> allCustom = _bl.GetAllCustomers();
                 foreach (Customer custom in allCustom)
                 {
                     if (input2 == custom.EmailLogin())
                     {
                         Console.WriteLine("Log in successful! Welcome back!");
+                        exit = true;
+                        break;
                     } else
                     {
                         Console.WriteLine("Email does not match our records. Please try again or sign up.");
