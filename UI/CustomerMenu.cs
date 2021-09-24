@@ -19,6 +19,7 @@ namespace UI
         public void Start()
         {
             bool exit = false;
+            bool login = false;
             string input2 = "";
             
             do
@@ -38,13 +39,16 @@ namespace UI
                     if (input2 == custom.EmailLogin())
                     {
                         Console.WriteLine("Log in successful! Welcome back!");
+                        login = true;
                         exit = true;
                         break;
-                    } else
-                    {
-                        Console.WriteLine("Email does not match our records. Please try again or sign up.");
-                        exit = true;
                     }
+                }
+
+                if (login == false)
+                {
+                    Console.WriteLine("Email does not match our records. Please try again or sign up for an account.");
+                    exit = true;
                 }
             } while (!exit);
         }
