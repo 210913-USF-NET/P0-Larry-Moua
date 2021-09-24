@@ -21,7 +21,9 @@ namespace DL.Entities
         public virtual DbSet<Artist> Artists { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Idol> Idols { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Photocard> Photocards { get; set; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +43,7 @@ namespace DL.Entities
                     .WithMany(p => p.Albums)
                     .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Album__ArtistID__1BC821DD");
+                    .HasConstraintName("FK__Album__ArtistID__4B7734FF");
             });
 
             modelBuilder.Entity<Artist>(entity =>
@@ -81,7 +83,28 @@ namespace DL.Entities
                     .WithMany(p => p.Idols)
                     .HasForeignKey(d => d.GroupId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Idols__GroupID__18EBB532");
+                    .HasConstraintName("FK__Idols__GroupID__489AC854");
+            });
+
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.ToTable("Inventory");
+
+                entity.Property(e => e.PhotocardId).HasColumnName("PhotocardID");
+
+                entity.Property(e => e.WarehouseId).HasColumnName("WarehouseID");
+
+                entity.HasOne(d => d.Photocard)
+                    .WithMany(p => p.Inventories)
+                    .HasForeignKey(d => d.PhotocardId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Inventory__Photo__55F4C372");
+
+                entity.HasOne(d => d.Warehouse)
+                    .WithMany(p => p.Inventories)
+                    .HasForeignKey(d => d.WarehouseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Inventory__Wareh__55009F39");
             });
 
             modelBuilder.Entity<Photocard>(entity =>
@@ -105,19 +128,32 @@ namespace DL.Entities
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.AlbumId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Photocard__Album__208CD6FA");
+                    .HasConstraintName("FK__Photocard__Album__503BEA1C");
 
                 entity.HasOne(d => d.GroupName)
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.GroupNameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Photocard__Group__1F98B2C1");
+                    .HasConstraintName("FK__Photocard__Group__4F47C5E3");
 
                 entity.HasOne(d => d.StageName)
                     .WithMany(p => p.Photocards)
                     .HasForeignKey(d => d.StageNameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Photocard__Stage__1EA48E88");
+                    .HasConstraintName("FK__Photocard__Stage__4E53A1AA");
+            });
+
+            modelBuilder.Entity<Warehouse>(entity =>
+            {
+                entity.ToTable("Warehouse");
+
+                entity.Property(e => e.Location)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
