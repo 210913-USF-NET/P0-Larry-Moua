@@ -47,13 +47,11 @@ namespace UI
 
                 switch(input){
                     case "y":
-                        // run AddCustomer()
                         Console.WriteLine("New user created! Please log in with your email address.");
                         exit = true;
                     break;
                     
                     case "n":
-                        exit = true;
                         goto userInput;
 
                     default:
