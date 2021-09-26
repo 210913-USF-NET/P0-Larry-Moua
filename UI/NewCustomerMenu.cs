@@ -47,6 +47,18 @@ namespace UI
 
                 switch(input){
                     case "y":
+                        List<Customer> allCustom = _bl.GetAllCustomers();
+                        foreach (Customer custom in allCustom)
+                        {
+                            if (newEmail == custom.EmailLogin())
+                            {
+                                Console.WriteLine($"An account already exists with this email. Please use another email or log in.");
+                                exit = true;
+                            }
+                        }
+
+                        if (exit == false)
+                        {
                         Customer newCustom = new Customer();
                         newCustom.Name = newName;
                         newCustom.Email = newEmail;
@@ -56,6 +68,8 @@ namespace UI
                         Console.WriteLine($"You created {addedCustom}");
                         Console.WriteLine("New user created! Please log in with your email address.");
                         exit = true;
+                        }
+                        
                     break;
                     
                     case "n":
