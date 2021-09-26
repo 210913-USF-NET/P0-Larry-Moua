@@ -37,7 +37,8 @@ namespace UI
                 {
                     if (input2 == custom.EmailLogin())
                     {
-                        Console.WriteLine("Log in successful! Welcome back!");
+                        DisplayCustomer.Name = custom.Name;
+                        Console.WriteLine($"Log in successful! Welcome back {DisplayCustomer.Name}!");
                         exit = true;
                         break;
                     }
