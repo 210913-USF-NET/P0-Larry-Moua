@@ -18,8 +18,17 @@ namespace UI
 
         public void Start()
         {
+            if (CustomerLogin() == true)
+            {
+                CustomerMainMenu();
+            }
+        }
+
+        public bool CustomerLogin()
+        {
             bool exit = false;
             string input2 = "";
+            bool success = false;
             
             do
             {
@@ -38,9 +47,10 @@ namespace UI
                     if (input2 == custom.EmailLogin())
                     {
                         DisplayCustomer.Name = custom.Name;
+                        DisplayCustomer.Warehouse = "WarehouseUS";
                         Console.WriteLine($"Log in successful! Welcome back {DisplayCustomer.Name}!");
+                        success = true;
                         exit = true;
-                        break;
                     }
                 }
 
@@ -48,7 +58,47 @@ namespace UI
                 {
                     Console.WriteLine("Email does not match our records. Please try again or sign up for an account.");
                     exit = true;
+                    break;
                 }
+
+            } while (!exit);
+
+            return success;
+        }
+
+        public void CustomerMainMenu()
+        {
+            bool exit = false;
+            string input = "";
+
+            do{
+            Console.WriteLine("--------------------");
+            Console.WriteLine($"Welcome {DisplayCustomer.Name}!");
+            Console.WriteLine($"You are currently at {DisplayCustomer.Warehouse}");
+            Console.WriteLine("--------------------");
+            Console.WriteLine("Please select an option.");
+            Console.WriteLine("[0] Change Warehouse");
+            Console.WriteLine("[1] Browse Catalog");
+            Console.WriteLine("[x] Sign Out");
+
+            input = Console.ReadLine();
+
+            switch(input)
+            {
+                case "0":
+                    break;
+
+                case "1":
+                    break;
+
+                case "x":
+                    exit = true;
+                    break;
+
+                default:
+                    Console.WriteLine("Please enter a proper command.");
+                    break;
+            }
 
             } while (!exit);
         }
