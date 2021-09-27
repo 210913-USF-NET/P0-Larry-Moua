@@ -47,7 +47,8 @@ namespace DL
                 Id = customerToUpdate.Id,
                 Name = customerToUpdate.Name,
                 Email = customerToUpdate.Email,
-                Address = customerToUpdate.Address
+                Address = customerToUpdate.Address,
+                Points = customerToUpdate.Points
             };
 
             customToUpdate = _context.Customers.Update(customToUpdate).Entity;
@@ -58,7 +59,8 @@ namespace DL
                 Id = customToUpdate.Id,
                 Name = customToUpdate.Name,
                 Email = customToUpdate.Email,
-                Address = customToUpdate.Address
+                Address = customToUpdate.Address,
+                Points = customerToUpdate.Points
             };
         }
 

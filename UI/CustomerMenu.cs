@@ -2,6 +2,8 @@ using System;
 using Models;
 using RBBL;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace UI
 {
@@ -120,8 +122,11 @@ namespace UI
                     Console.WriteLine("Please input your new name.");
                     string input = Console.ReadLine();
                     Console.WriteLine($"Your new name is {input}!");
-                    // 
-
+                    
+                    Customer customer = new Customer();
+                    customer.Name = input;
+                    Customer changeName = _bl.UpdateCustomer(customer);
+                    Console.WriteLine($"You changed {changeName}.");
                     break;
 
                 case "n":
