@@ -8,6 +8,6 @@ namespace RBBL
     {
         List<Customer> GetAllCustomers();
         Customer AddCustomer(Customer custom);
-        Customer UpdateCustomer(Customer customToUpdate);
+        Customer UpdateCustomer(Customer customToUpdate, string input);
     }
 }

@@ -24,9 +24,9 @@ namespace RBBL
             return _repo.AddCustomer(custom);
         }
 
-        public Customer UpdateCustomer(Customer customToUpdate)
+        public Customer UpdateCustomer(Customer customToUpdate, string input)
         {
-            return _repo.UpdateCustomer(customToUpdate);
+            return _repo.UpdateCustomer(customToUpdate, input);
         }
     }
 }

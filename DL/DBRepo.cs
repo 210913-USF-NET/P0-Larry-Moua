@@ -41,26 +41,19 @@ namespace DL
 
         }
 
-        public Model.Customer UpdateCustomer(Model.Customer customerToUpdate)
+        public Model.Customer UpdateCustomer(Model.Customer customerToUpdate, string input)
         {
-            Entity.Customer customToUpdate = new Entity.Customer() {
-                Id = customerToUpdate.Id,
-                Name = customerToUpdate.Name,
-                Email = customerToUpdate.Email,
-                Address = customerToUpdate.Address,
-                Points = customerToUpdate.Points
-            };
+            Entity.Customer customToUpdate = (from c in _context.Customers
+                where c.Email == customerToUpdate.Email
+                select c)
+                .SingleOrDefault();
 
-            customToUpdate = _context.Customers.Update(customToUpdate).Entity;
+            customToUpdate.Name = input;
             _context.SaveChanges();
             _context.ChangeTracker.Clear();
 
             return new Model.Customer() {
-                Id = customToUpdate.Id,
-                Name = customToUpdate.Name,
-                Email = customToUpdate.Email,
-                Address = customToUpdate.Address,
-                Points = customerToUpdate.Points
+                Name = customerToUpdate.Name
             };
         }
 

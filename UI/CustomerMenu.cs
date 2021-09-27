@@ -122,11 +122,33 @@ namespace UI
                     Console.WriteLine("Please input your new name.");
                     string input = Console.ReadLine();
                     Console.WriteLine($"Your new name is {input}!");
+
+                    List<Customer> allCustom = _bl.GetAllCustomers();
+                    foreach (Customer custom in allCustom)
+                    {
+                        if (DisplayCustomer.Email == custom.Email)
+                        {
+                            custom.Name = input;
+                            DisplayCustomer.Name = input;
+                            Console.WriteLine(custom.Name);
+                            _bl.UpdateCustomer(custom, input);
+                        }
+                    }
+
+                    // List<Customer> allCustom = _bl.GetAllCustomers();
+                    // foreach (Customer custom in allCustom)
+                    // {
+                    //     if (DisplayCustomer.Email == custom.Email)
+                    //     {
+                    //         custom.Name = input;
+                    //         Console.WriteLine(custom.Name);
+                    //     }
+                    // }
                     
-                    Customer customer = new Customer();
-                    customer.Name = input;
-                    Customer changeName = _bl.UpdateCustomer(customer);
-                    Console.WriteLine($"You changed {changeName}.");
+                    // Customer customer = new Customer();
+                    // customer.Name = input;
+                    // Customer changeName = _bl.UpdateCustomer(customer);
+                    // Console.WriteLine($"You changed {changeName}.");
                     break;
 
                 case "n":
