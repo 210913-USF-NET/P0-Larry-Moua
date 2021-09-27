@@ -91,9 +91,11 @@ namespace UI
                 switch(input)
                 {
                     case "0":
+                        ChangeWarehouse();
                         break;
 
                     case "1":
+                        BrowseWarehouse();
                         break;
                     
                     case "2":
@@ -134,21 +136,6 @@ namespace UI
                             _bl.UpdateCustomer(custom, input);
                         }
                     }
-
-                    // List<Customer> allCustom = _bl.GetAllCustomers();
-                    // foreach (Customer custom in allCustom)
-                    // {
-                    //     if (DisplayCustomer.Email == custom.Email)
-                    //     {
-                    //         custom.Name = input;
-                    //         Console.WriteLine(custom.Name);
-                    //     }
-                    // }
-                    
-                    // Customer customer = new Customer();
-                    // customer.Name = input;
-                    // Customer changeName = _bl.UpdateCustomer(customer);
-                    // Console.WriteLine($"You changed {changeName}.");
                     break;
 
                 case "n":
@@ -158,6 +145,73 @@ namespace UI
                     Console.WriteLine("Please enter [y] or [n] and try again.");
                     break;
             }
+        }
+
+        public void ChangeWarehouse()
+        {
+            bool exit = false;
+            string input = "";
+            do {
+                Console.WriteLine($"You are currently at {DisplayCustomer.Warehouse}.");
+                Console.WriteLine("Please select the warehouse you wish to use.");
+                Console.WriteLine("[0] WarehouseUS");
+                Console.WriteLine("[1] WarehouseDE");
+                Console.WriteLine("[2] WarehouseKR");
+                Console.WriteLine("[x] Cancel");
+                input = Console.ReadLine();
+
+                switch(input)
+                {
+                    case "0":
+                        DisplayCustomer.Warehouse = "WarehouseUS";
+                        exit = true;
+                        break;
+
+                    case "1":
+                        DisplayCustomer.Warehouse = "WarehouseDE";
+                        exit = true;
+                        break;
+                    
+                    case "2":
+                        DisplayCustomer.Warehouse = "WarehouseKR";
+                        exit = true;
+                        break;
+
+                    case "x":
+                        exit = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a proper command.");
+                        break;
+                }
+
+            } while (!exit);
+
+        }
+
+        public void BrowseWarehouse()
+        {
+            int id = 0;
+            if (DisplayCustomer.Warehouse == "WarehouseUS")
+            {
+                id = 1;
+            } else if (DisplayCustomer.Warehouse == "WarehouseDE")
+            {
+                id = 2;
+            } else if (DisplayCustomer.Warehouse == "WarehouseKR")
+            {
+                id = 3;
+            }
+
+            List<Inventory> allInvent = _bl.GetAllInventory(id);
+                foreach (Inventory invent in allInvent)
+                {
+                    if (id == invent.WarehouseId)
+                    {
+                        Console.WriteLine(invent.ToString());
+                    }
+                }
         }
 
     }
