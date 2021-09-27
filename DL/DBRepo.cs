@@ -41,10 +41,25 @@ namespace DL
 
         }
 
-        public Model.Customer UpdateCustomer(Model.Customer customToUpdate)
+        public Model.Customer UpdateCustomer(Model.Customer customerToUpdate)
         {
-            throw new NotImplementedException();
+            Entity.Customer customToUpdate = new Entity.Customer() {
+                Id = customerToUpdate.Id,
+                Name = customerToUpdate.Name,
+                Email = customerToUpdate.Email,
+                Address = customerToUpdate.Address
+            };
 
+            customToUpdate = _context.Customers.Update(customToUpdate).Entity;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new Model.Customer() {
+                Id = customToUpdate.Id,
+                Name = customToUpdate.Name,
+                Email = customToUpdate.Email,
+                Address = customToUpdate.Address
+            };
         }
 
         public List<Model.Customer> GetAllCustomers()

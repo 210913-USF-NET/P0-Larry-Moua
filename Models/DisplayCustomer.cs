@@ -9,5 +9,6 @@ namespace Models
     {
         public static string Name {get; set; }
         public static string Warehouse {get; set; }
+        public static string Email {get; set; }
     }
 }

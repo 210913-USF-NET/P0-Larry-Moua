@@ -48,6 +48,7 @@ namespace UI
                     {
                         DisplayCustomer.Name = custom.Name;
                         DisplayCustomer.Warehouse = "WarehouseUS";
+                        DisplayCustomer.Email = input2;
                         Console.WriteLine($"Log in successful! Welcome back {DisplayCustomer.Name}!");
                         success = true;
                         exit = true;
@@ -72,6 +73,7 @@ namespace UI
             string input = "";
 
             do{
+
             Console.WriteLine("--------------------");
             Console.WriteLine($"Welcome {DisplayCustomer.Name}!");
             Console.WriteLine($"You are currently at {DisplayCustomer.Warehouse}");
@@ -79,28 +81,56 @@ namespace UI
             Console.WriteLine("Please select an option.");
             Console.WriteLine("[0] Change Warehouse");
             Console.WriteLine("[1] Browse Catalog");
+            Console.WriteLine("[2] Change Name");
             Console.WriteLine("[x] Sign Out");
 
             input = Console.ReadLine();
 
-            switch(input)
+                switch(input)
+                {
+                    case "0":
+                        break;
+
+                    case "1":
+                        break;
+                    
+                    case "2":
+                        ChangeName();
+                        break;
+
+                    case "x":
+                        exit = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a proper command.");
+                        break;
+                }
+
+            } while (!exit);
+        }
+
+        public void ChangeName()
+        {
+            Console.WriteLine($"Your name is {DisplayCustomer.Name}. Do you wish to change it?");
+            string confirmInput = Console.ReadLine();
+            switch(confirmInput)
             {
-                case "0":
+                case "y":
+                    Console.WriteLine("Please input your new name.");
+                    string input = Console.ReadLine();
+                    Console.WriteLine($"Your new name is {input}!");
+                    // 
+
                     break;
 
-                case "1":
-                    break;
-
-                case "x":
-                    exit = true;
+                case "n":
                     break;
 
                 default:
-                    Console.WriteLine("Please enter a proper command.");
+                    Console.WriteLine("Please enter [y] or [n] and try again.");
                     break;
             }
-
-            } while (!exit);
         }
 
     }
