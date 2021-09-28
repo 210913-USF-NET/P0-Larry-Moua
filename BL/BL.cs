@@ -44,5 +44,15 @@ namespace RBBL
             return _repo.UpdateInventory(inventoryToUpdate, input, input2);
         }
 
+        public List<Order> GetAllOrders()
+        {
+            return _repo.GetAllOrders();
+        }
+
+        public Order AddOrder(Order ord, int input1, int input2, int input3)
+        {
+            return _repo.AddOrder(ord, input1, input2, input3);
+        }
+
     }
 }

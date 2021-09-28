@@ -49,6 +49,7 @@ namespace UI
                     if (input2 == custom.EmailLogin())
                     {
                         DisplayCustomer.Name = custom.Name;
+                        DisplayCustomer.CustomerId = custom.Id;
                         DisplayCustomer.Warehouse = "WarehouseUS";
                         DisplayCustomer.WarehouseId = 1;
                         DisplayCustomer.Email = input2;
@@ -86,6 +87,7 @@ namespace UI
             Console.WriteLine("[1] Browse Catalog");
             Console.WriteLine("[2] Change Profile Name");
             Console.WriteLine("[3] View Cart");
+            Console.WriteLine("[4] View Order History");
             Console.WriteLine("[x] Sign Out");
 
             input = Console.ReadLine();
@@ -108,7 +110,12 @@ namespace UI
                         ViewCart();
                         break;
 
+                    case "4":
+                        ViewOrderHistory();
+                        break;
+
                     case "x":
+                        DisplayCart.cart.Clear();
                         exit = true;
                         break;
 
@@ -297,6 +304,9 @@ namespace UI
                                                     _bl.UpdateInventory(invent, DisplayCart.cart[i].ReturnWarehouseId(), DisplayCart.cart[i].ReturnPhotoId());
                                                 }
                                             }
+
+                                            Order newOrd = new Order();
+                                            _bl.AddOrder(newOrd, DisplayCustomer.CustomerId, DisplayCart.cart[i].ReturnWarehouseId(), DisplayCart.cart[i].ReturnPhotoId());
                                         }
                                         Console.WriteLine("Checkout successful.");
                                         DisplayCart.cart.Clear();
@@ -333,6 +343,18 @@ namespace UI
                             break;
                     }
                 } while (!exit);
+            }
+        }
+
+        public void ViewOrderHistory()
+        {
+            List<Order> allOrd = _bl.GetAllOrders();
+            foreach (Order ord in allOrd)
+            {
+                if (DisplayCustomer.CustomerId == ord.CustomerId)
+                {
+                    Console.WriteLine(ord.ToString());
+                }
             }
         }
     }

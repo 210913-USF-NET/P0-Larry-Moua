@@ -57,6 +57,42 @@ namespace DL
             };
         }
 
+        public Model.Order AddOrder(Model.Order ord, int input1, int input2, int input3)
+        {
+            Entity.Order orderToAdd = new Entity.Order(){
+                CustomerId = input1,
+                WarehouseId = input2,
+                PhotocardId = input3
+            };
+
+            orderToAdd = _context.Add(orderToAdd).Entity;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new Model.Order()
+            {
+                Id = orderToAdd.Id,
+                CustomerId = orderToAdd.CustomerId,
+                WarehouseId = orderToAdd.WarehouseId,
+                PhotocardId = orderToAdd.PhotocardId,
+                DateandTime = orderToAdd.DateandTime
+            };
+        }
+
+        public List<Model.Order> GetAllOrders()
+        {
+            return _context.Orders.Select(
+                orders => new Model.Order()
+                {
+                    Id = orders.Id,
+                    CustomerId = orders.CustomerId,
+                    WarehouseId = orders.WarehouseId,
+                    PhotocardId = orders.PhotocardId,
+                    DateandTime = orders.DateandTime
+                }
+            ).ToList();
+        }
+
         public List<Model.Customer> GetAllCustomers()
         {
             return _context.Customers.Select(

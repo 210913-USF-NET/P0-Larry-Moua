@@ -25,6 +25,7 @@ namespace UI
                 Console.WriteLine("Please select an option.");
                 Console.WriteLine("[0] Browse Catalog");
                 Console.WriteLine("[1] Browse All Customers");
+                Console.WriteLine("[2] Browse All Orders");
                 Console.WriteLine("[x] Sign Out");
 
                 switch (Console.ReadLine())
@@ -35,6 +36,10 @@ namespace UI
 
                     case "1":
                         ViewAllCustomers();
+                        break;
+
+                    case "2":
+                        ViewAllOrders();
                         break;
                     
                     case "x":
@@ -67,6 +72,13 @@ namespace UI
             }
         }
 
-
+        public void ViewAllOrders()
+        {
+            List<Order> allOrd = _bl.GetAllOrders();
+            foreach (Order ord in allOrd)
+            {
+                Console.WriteLine(ord.ToString());
+            }
+        }
     }
 }
