@@ -22,6 +22,7 @@ namespace DL.Entities
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Idol> Idols { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Photocard> Photocards { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
 
@@ -105,6 +106,31 @@ namespace DL.Entities
                     .HasForeignKey(d => d.WarehouseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Inventory__Wareh__55009F39");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.DateandTime)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__Customer__5D95E53A");
+
+                entity.HasOne(d => d.Photocard)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.PhotocardId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__Photocar__5F7E2DAC");
+
+                entity.HasOne(d => d.Warehouse)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.WarehouseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orders__Warehous__5E8A0973");
             });
 
             modelBuilder.Entity<Photocard>(entity =>

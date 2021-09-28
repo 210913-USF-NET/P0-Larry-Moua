@@ -10,6 +10,7 @@ namespace Models
         public static string Name {get; set; }
         public static string Warehouse {get; set; }
         public static int WarehouseId {get; set; }
+        public static int CustomerId {get; set; }
         public static string Email {get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace DL.Entities
         public Photocard()
         {
             Inventories = new HashSet<Inventory>();
+            Orders = new HashSet<Order>();
         }
 
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace DL.Entities
         public virtual Artist GroupName { get; set; }
         public virtual Idol StageName { get; set; }
         public virtual ICollection<Inventory> Inventories { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
