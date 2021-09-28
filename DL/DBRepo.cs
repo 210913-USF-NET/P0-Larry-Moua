@@ -88,8 +88,7 @@ namespace DL
         public Model.Inventory UpdateInventory(Model.Inventory inventoryToUpdate, int input, int input2)
         {
             Entity.Inventory inventToUpdate = (from i in _context.Inventories
-            where i.WarehouseId == input
-            where i.PhotocardId == input2
+            where i.WarehouseId == input && i.PhotocardId == input2
             select i)
             .SingleOrDefault();
 

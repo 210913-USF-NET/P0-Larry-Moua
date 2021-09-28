@@ -39,5 +39,10 @@ namespace RBBL
             return _repo.GetAllPhotocard();
         }
 
+        public Inventory UpdateInventory(Inventory inventoryToUpdate, int input, int input2)
+        {
+            return _repo.UpdateInventory(inventoryToUpdate, input, input2);
+        }
+
     }
 }

@@ -278,10 +278,40 @@ namespace UI
 
                     switch(input){
                         case "0":
+                            
                             total = DisplayCart.cart.Count *5;
                             Console.WriteLine("----------");
                             Console.WriteLine($"Your total is {total}.");
-                            Console.WriteLine($"Do you wish to check out?");
+                            Console.WriteLine("Do you wish to check out? [y] or [n]");
+                            string input2 = Console.ReadLine();
+                                switch(input2)
+                                {
+                                    case "y":
+                                        List<Inventory> allInvent = _bl.GetAllInventory(0);
+                                        for (int i = 0; i < DisplayCart.cart.Count; i++)
+                                        {
+                                            foreach (Inventory invent in allInvent)
+                                            {
+                                                if (DisplayCart.cart[i].ReturnWarehouseId() == invent.WarehouseId && DisplayCart.cart[i].ReturnPhotoId() == invent.PhotocardId)
+                                                {
+                                                    _bl.UpdateInventory(invent, DisplayCart.cart[i].ReturnWarehouseId(), DisplayCart.cart[i].ReturnPhotoId());
+                                                }
+                                            }
+                                        }
+                                        Console.WriteLine("Checkout successful.");
+                                        DisplayCart.cart.Clear();
+                                        exit = true;
+                                        break;
+
+                                    case "n":
+                                        Console.WriteLine("Canceling checkout request...");
+                                        exit = true;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Please enter a proper command.");
+                                        break;
+                                }
                             break;
 
                         case "1":
