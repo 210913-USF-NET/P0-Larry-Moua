@@ -83,8 +83,7 @@ namespace UI
             Console.WriteLine("Please select an option.");
             Console.WriteLine("[0] Change Warehouse");
             Console.WriteLine("[1] Browse Catalog");
-            Console.WriteLine("[2] Change Name");
-            Console.WriteLine("[3] View Photocard ID");
+            Console.WriteLine("[2] Change Profile Name");
             Console.WriteLine("[x] Sign Out");
 
             input = Console.ReadLine();
@@ -98,13 +97,9 @@ namespace UI
                     case "1":
                         BrowseWarehouse();
                         break;
-                    
+
                     case "2":
                         ChangeName();
-                        break;
-
-                    case "3":
-                        CheckSetId();
                         break;
 
                     case "x":
@@ -210,8 +205,10 @@ namespace UI
             }
 
             string setName = "";
+            decimal setPrice = 0;
 
             Console.WriteLine($"-----INVENTORY AT {DisplayCustomer.Warehouse}-----");
+            List<Product> tempCatalog = new List<Product>();
             List<Photocard> allPhoto = _bl.GetAllPhotocard();
             List<Inventory> allInvent = _bl.GetAllInventory(id);
                 foreach (Inventory invent in allInvent)
@@ -223,16 +220,16 @@ namespace UI
                             if (invent.PhotocardId == photo.Id)
                             {
                                 setName = photo.SetId;
+                                setPrice = photo.Price;
                             }
                         }
-                        Console.WriteLine($"Photocard: {setName} PhotocardId: {invent.PhotocardId} Stock: {invent.Stock}");
+                        // Console.WriteLine($"PhotocardId: {invent.PhotocardId} Photocard: {setName} Price: {setPrice} Stock: {invent.Stock}");
+                        tempCatalog.Add(new Product(invent.PhotocardId, setName, setPrice, invent.Stock));
                     }
                 }
-        }
 
-        public void CheckSetId()
-        {
-            Console.WriteLine("Please enter the number of the Photocard ID you wish to view.");
+            Product selectedInventory = _customerService.SelectAPhoto("Pick a photo to add to cart or type [x] to cancel.", tempCatalog);
+
         }
     }
 }
