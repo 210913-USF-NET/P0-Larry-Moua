@@ -232,36 +232,77 @@ namespace UI
                                 setPrice = photo.Price;
                             }
                         }
-                        // Console.WriteLine($"PhotocardId: {invent.PhotocardId} Photocard: {setName} Price: {setPrice} Stock: {invent.Stock}");
-                        tempCatalog.Add(new Product(invent.PhotocardId, setName, setPrice));
+                        tempCatalog.Add(new Product(DisplayCustomer.WarehouseId, invent.PhotocardId, setName, setPrice));
                     }
                 }
 
             Product selectedInventory = _customerService.SelectAPhoto("Pick a photo to add to cart or type [x] to cancel.", tempCatalog);
 
-            DisplayCart.cart.Add(selectedInventory);
-            Console.WriteLine(DisplayCart.cart[0]);
+            if (selectedInventory != null)
+            {
+                DisplayCart.cart.Add(selectedInventory);
+                Console.WriteLine(DisplayCart.cart[0]);
+            } else
+            {
+                Console.WriteLine("Canceling selection...");
+            }
+
         }
 
         public void ViewCart()
         {
+            string input = "";
+            bool exit = false;
+
             if (DisplayCart.cart.Count == 0)
             {
                 Console.WriteLine("Your shopping cart is empty!");
+                exit = true;
             } else
             {
-                decimal total = 0;
-                Console.WriteLine("----------");
-                Console.WriteLine("SHOPPING CART ITEMS");
-                for (int i = 0; i < DisplayCart.cart.Count; i++)
-                {
-                    Console.WriteLine(DisplayCart.cart[i]);
-                }
-                total = DisplayCart.cart.Count *5;
-                Console.WriteLine("----------");
-                Console.WriteLine($"Your total is {total}.");
-                Console.WriteLine($"Do you wish to check out?");
+                do{
+                    decimal total = 0;
+                    Console.WriteLine("----------");
+                    Console.WriteLine("SHOPPING CART ITEMS");
+                    for (int i = 0; i < DisplayCart.cart.Count; i++)
+                    {
+                        Console.WriteLine(DisplayCart.cart[i]);
+                    }
+                    Console.WriteLine("----------");
+                    Console.WriteLine("Please select an option.");
+                    Console.WriteLine("[0] Checkout");
+                    Console.WriteLine("[1] Remove From Cart");
+                    Console.WriteLine("[x] Cancel");
 
+                    input = Console.ReadLine();
+
+                    switch(input){
+                        case "0":
+                            total = DisplayCart.cart.Count *5;
+                            Console.WriteLine("----------");
+                            Console.WriteLine($"Your total is {total}.");
+                            Console.WriteLine($"Do you wish to check out?");
+                            break;
+
+                        case "1":
+                            break;
+
+                        case "debug":
+                            for (int i = 0; i < DisplayCart.cart.Count; i++)
+                            {
+                                Console.WriteLine($"WarehouseId: {DisplayCart.cart[i].ReturnWarehouseId()} PhotocardId:{DisplayCart.cart[i].ReturnPhotoId()}");
+                            }
+                            break;
+
+                        case "x":
+                            exit = true;
+                            break;
+
+                        default:
+                            Console.WriteLine("Please enter a proper command.");
+                            break;
+                    }
+                } while (!exit);
             }
         }
     }
