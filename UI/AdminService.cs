@@ -8,9 +8,8 @@ namespace UI
 {
     public class AdminService
     {
-        public Customer SelectACustomer(string prompt, List<Customer> listToPick)
+        public Inventory SelectInventory(string prompt, List<Inventory> listToPick)
         {
-            selectCustom:
             Console.WriteLine(prompt);
             for (int i = 0; i < listToPick.Count; i++)
             {
@@ -26,8 +25,7 @@ namespace UI
                 return listToPick[parsedInput];
             }
             else {
-                Console.WriteLine("invalid input");
-                goto selectCustom;
+                return null;
             }
         }
     }

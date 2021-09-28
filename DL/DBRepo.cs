@@ -137,6 +137,30 @@ namespace DL
             };
         }
 
+        public Model.Inventory StockInventory(Model.Inventory inventoryToStock, int input)
+        {
+            Entity.Inventory inventToStock = new Entity.Inventory()
+            {
+                Id = inventoryToStock.Id,
+                WarehouseId = inventoryToStock.WarehouseId,
+                PhotocardId = inventoryToStock.PhotocardId,
+                Stock = inventoryToStock.Stock
+            };
+
+            inventToStock.Stock = input;
+            inventToStock = _context.Inventories.Update(inventToStock).Entity;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+            return new Model.Inventory()
+            {
+                Id = inventToStock.Id,
+                WarehouseId = inventToStock.WarehouseId,
+                PhotocardId = inventToStock.PhotocardId,
+                Stock = inventToStock.Stock
+            };
+        }
+
         public List<Model.Photocard> GetAllPhotocard()
         {
             return _context.Photocards.Select(

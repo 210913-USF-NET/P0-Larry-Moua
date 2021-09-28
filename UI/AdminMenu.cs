@@ -23,9 +23,9 @@ namespace UI
             {
                 Console.WriteLine("--------------------");
                 Console.WriteLine("Please select an option.");
-                Console.WriteLine("[0] Browse Catalog");
-                Console.WriteLine("[1] Browse All Customers");
-                Console.WriteLine("[2] Browse All Orders");
+                Console.WriteLine("[0] View Inventory");
+                Console.WriteLine("[1] View All Customers");
+                Console.WriteLine("[2] View All Orders");
                 Console.WriteLine("[x] Sign Out");
 
                 switch (Console.ReadLine())
@@ -65,10 +65,51 @@ namespace UI
 
         public void ViewCatalog()
         {
+            string input = "";
+            string stockInput = "";
+            int stockInt = 0;
             List<Inventory> allInvent = _bl.GetAllInventory(0);
-            foreach (Inventory invent in allInvent)
+            Inventory selectedInventory = _adminService.SelectInventory("Select an item you wish to restock or type [x] to cancel.", allInvent);
+
+            if (selectedInventory != null)
             {
-                Console.WriteLine(invent.ToString());
+                Console.WriteLine($"You have selected {selectedInventory}");
+                Console.WriteLine($"Please confirm your selection. [y] or [n]");
+                input = Console.ReadLine();
+                switch(input)
+                {
+                    case "y":
+                        Console.WriteLine("Please modify the stock available for this product.");
+                        stockInput = Console.ReadLine();
+                        Console.WriteLine($"You are changing this product to have {stockInput} available. Is this correct? [y] or [n]");
+                        string input2 = Console.ReadLine();
+                        switch(input2)
+                        {
+                            case "y":
+                                Int32.TryParse(stockInput, out stockInt);
+
+                                // run code to change the stock
+                                _bl.StockInventory(selectedInventory, stockInt);
+                                Console.WriteLine("Change successful!");
+                                break;
+
+                            case "n":
+                                break;
+
+                            default:
+                                Console.WriteLine("Please enter a proper command and try again.");
+                                break;
+                        }
+                        break;
+                    case "n":
+                        break;
+                    default:
+                        Console.WriteLine($"Please enter a proper command and try again.");
+                        break;
+                }
+            } else
+            {
+                Console.WriteLine("Canceling selection...");
             }
         }
 

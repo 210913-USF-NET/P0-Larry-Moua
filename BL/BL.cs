@@ -54,5 +54,10 @@ namespace RBBL
             return _repo.AddOrder(ord, input1, input2, input3);
         }
 
+        public Inventory StockInventory(Inventory inventoryToStock, int input)
+        {
+            return _repo.StockInventory(inventoryToStock, input);
+        }
+
     }
 }
