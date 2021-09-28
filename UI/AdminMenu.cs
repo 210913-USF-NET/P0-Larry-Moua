@@ -30,6 +30,7 @@ namespace UI
                 switch (Console.ReadLine())
                 {
                     case "0":
+                        ViewCatalog();
                         break;
 
                     case "1":
@@ -54,6 +55,15 @@ namespace UI
             foreach (Customer custom in allCustom)
             {
                 Console.WriteLine(custom.ToString());
+            }
+        }
+
+        public void ViewCatalog()
+        {
+            List<Inventory> allInvent = _bl.GetAllInventory(0);
+            foreach (Inventory invent in allInvent)
+            {
+                Console.WriteLine(invent.ToString());
             }
         }
 

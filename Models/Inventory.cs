@@ -19,7 +19,7 @@ namespace Models
 
         public override string ToString()
         {
-            return $"Photocard: {this.PhotocardId}, Stock {this.Stock}";
+            return $"Warehouse: {this.WarehouseId} Photocard: {this.PhotocardId}, Stock {this.Stock}";
         }
     }
 }

@@ -50,6 +50,7 @@ namespace UI
                     {
                         DisplayCustomer.Name = custom.Name;
                         DisplayCustomer.Warehouse = "WarehouseUS";
+                        DisplayCustomer.WarehouseId = 1;
                         DisplayCustomer.Email = input2;
                         Console.WriteLine($"Log in successful! Welcome back {DisplayCustomer.Name}!");
                         success = true;
@@ -169,16 +170,19 @@ namespace UI
                 {
                     case "0":
                         DisplayCustomer.Warehouse = "WarehouseUS";
+                        DisplayCustomer.WarehouseId = 1;
                         exit = true;
                         break;
 
                     case "1":
                         DisplayCustomer.Warehouse = "WarehouseDE";
+                        DisplayCustomer.WarehouseId = 2;
                         exit = true;
                         break;
                     
                     case "2":
                         DisplayCustomer.Warehouse = "WarehouseKR";
+                        DisplayCustomer.WarehouseId = 3;
                         exit = true;
                         break;
 
@@ -257,7 +261,6 @@ namespace UI
                 Console.WriteLine("----------");
                 Console.WriteLine($"Your total is {total}.");
                 Console.WriteLine($"Do you wish to check out?");
-
 
             }
         }

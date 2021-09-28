@@ -85,6 +85,23 @@ namespace DL
 
         }
 
+        public Model.Inventory UpdateInventory(Model.Inventory inventoryToUpdate, int input, int input2)
+        {
+            Entity.Inventory inventToUpdate = (from i in _context.Inventories
+            where i.WarehouseId == input
+            where i.PhotocardId == input2
+            select i)
+            .SingleOrDefault();
+
+            inventToUpdate.Stock--;
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+            
+            return new Model.Inventory() {
+                Stock = inventoryToUpdate.Stock
+            };
+        }
+
         public List<Model.Photocard> GetAllPhotocard()
         {
             return _context.Photocards.Select(
