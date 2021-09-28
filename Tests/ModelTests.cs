@@ -38,5 +38,16 @@ namespace Tests
 
             Assert.Throws<InputInvalidException>(() => test.Email = input);
         }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(10000)]
+        [InlineData(-14)]
+        public void StockShouldNotAllowNegativeNumbers(int input)
+        {
+            Inventory test = new Inventory();
+
+            Assert.Throws<InputInvalidException>(() => test.Stock = input);
+        }
     }
 }
