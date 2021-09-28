@@ -2,6 +2,7 @@ using System;
 using Models;
 using RBBL;
 using System.Collections.Generic;
+using Serilog;
 
 namespace UI
 {
@@ -67,6 +68,7 @@ namespace UI
                         Customer addedCustom = _bl.AddCustomer(newCustom);
                         Console.WriteLine($"You created {addedCustom}");
                         Console.WriteLine("New user created! Please log in with your email address.");
+                        Log.Information("New CUSTOMER Created");
                         exit = true;
                         }
                         
