@@ -31,7 +31,7 @@ namespace Models
                 }
                 else if(!pattern.IsMatch(value))
                 {
-                    throw new InputInvalidException("Customer name can only have alphabetical characters.");
+                    throw new InputInvalidException("Customer name can only have alphabetical characters and spaces.");
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace Models
             get{ return _email;}
             set
             {
-                Regex pattern = new Regex("^[a-zA-Z0-9@.]");
+                Regex pattern = new Regex("^[a-zA-Z0-9@._]");
 
                 if(value.Length == 0)
                 {
@@ -58,7 +58,7 @@ namespace Models
                 }
                 else if(!pattern.IsMatch(value))
                 {
-                    throw new InputInvalidException("Email can only have alphanumerical characters and a .");
+                    throw new InputInvalidException("Email can only have alphanumerical characters, @, and . with no spaces.");
                 }
                 else
                 {
