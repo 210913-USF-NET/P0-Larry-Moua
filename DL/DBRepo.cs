@@ -73,7 +73,6 @@ namespace DL
 
         public List<Model.Inventory> GetAllInventory(int id)
         {
-
             return _context.Inventories.Select(
                 inventories => new Model.Inventory()
                 {
@@ -82,35 +81,20 @@ namespace DL
                     PhotocardId = inventories.PhotocardId,
                     Stock = inventories.Stock
                 }
-            ).ToList();
+                ).ToList();
+
         }
 
-            // var inventory = _context.Inventories
-            //         .Join(_context.Warehouses,
-            //         i => i.Id,
-            //         w => w.Id,
-            //         (i, w) => new {
-            //             Warehouse = w.Name,
-            //             PhotocardId = i.PhotocardId,
-            //             Stock = i.Stock }
-            //         );
-
-            // foreach (var i in inventory)
-            // {
-            //     return Console.WriteLine($"{i.Warehouse} {i.PhotocardId} {i.Stock}");
-            // }
-
-            // return _context.Inventories
-            //     .Join(_context.Warehouses,
-            //     i => i.Id,
-            //     w => w.Id,
-            //     (i, w) =>
-            //     new
-            //         {
-            //             Name = w.Name,
-            //             Photocard = i.PhotocardId,
-            //             Stock = i.Stock
-            //         }
-            // ).ToList();
+        public List<Model.Photocard> GetAllPhotocard()
+        {
+            return _context.Photocards.Select(
+                photocard => new Model.Photocard()
+                {
+                    Id = photocard.Id,
+                    SetId = photocard.SetId,
+                    Price = photocard.Price
+                }
+            ).ToList();
+        }
     }
 }

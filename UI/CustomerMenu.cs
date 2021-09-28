@@ -84,6 +84,7 @@ namespace UI
             Console.WriteLine("[0] Change Warehouse");
             Console.WriteLine("[1] Browse Catalog");
             Console.WriteLine("[2] Change Name");
+            Console.WriteLine("[3] View Photocard ID");
             Console.WriteLine("[x] Sign Out");
 
             input = Console.ReadLine();
@@ -100,6 +101,10 @@ namespace UI
                     
                     case "2":
                         ChangeName();
+                        break;
+
+                    case "3":
+                        CheckSetId();
                         break;
 
                     case "x":
@@ -204,15 +209,30 @@ namespace UI
                 id = 3;
             }
 
+            string setName = "";
+
+            Console.WriteLine($"-----INVENTORY AT {DisplayCustomer.Warehouse}-----");
+            List<Photocard> allPhoto = _bl.GetAllPhotocard();
             List<Inventory> allInvent = _bl.GetAllInventory(id);
                 foreach (Inventory invent in allInvent)
                 {
                     if (id == invent.WarehouseId)
                     {
-                        Console.WriteLine(invent.ToString());
+                        foreach (Photocard photo in allPhoto)
+                        {
+                            if (invent.PhotocardId == photo.Id)
+                            {
+                                setName = photo.SetId;
+                            }
+                        }
+                        Console.WriteLine($"Photocard: {setName} PhotocardId: {invent.PhotocardId} Stock: {invent.Stock}");
                     }
                 }
         }
 
+        public void CheckSetId()
+        {
+            Console.WriteLine("Please enter the number of the Photocard ID you wish to view.");
+        }
     }
 }

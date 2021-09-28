@@ -33,5 +33,11 @@ namespace RBBL
         {
             return _repo.UpdateCustomer(customToUpdate, input);
         }
+
+        public List<Photocard> GetAllPhotocard()
+        {
+            return _repo.GetAllPhotocard();
+        }
+
     }
 }

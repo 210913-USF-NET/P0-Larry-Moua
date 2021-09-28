@@ -10,5 +10,7 @@ namespace RBBL
         Customer AddCustomer(Customer custom);
         Customer UpdateCustomer(Customer customToUpdate, string input);
         List<Inventory> GetAllInventory(int id);
+        List<Photocard> GetAllPhotocard();
+
     }
 }

@@ -8,7 +8,7 @@ namespace UI
 {
     public class CustomerService
     {
-        public Customer SelectACustomer(string prompt, List<Customer> listToPick)
+        public Inventory SelectACustomer(string prompt, List<Inventory> listToPick)
         {
             selectCustom:
             Console.WriteLine(prompt);
