@@ -84,6 +84,7 @@ namespace UI
             Console.WriteLine("[0] Change Warehouse");
             Console.WriteLine("[1] Browse Catalog");
             Console.WriteLine("[2] Change Profile Name");
+            Console.WriteLine("[3] View Cart");
             Console.WriteLine("[x] Sign Out");
 
             input = Console.ReadLine();
@@ -100,6 +101,10 @@ namespace UI
 
                     case "2":
                         ChangeName();
+                        break;
+
+                    case "3":
+                        ViewCart();
                         break;
 
                     case "x":
@@ -213,7 +218,7 @@ namespace UI
             List<Inventory> allInvent = _bl.GetAllInventory(id);
                 foreach (Inventory invent in allInvent)
                 {
-                    if (id == invent.WarehouseId)
+                    if (id == invent.WarehouseId && invent.Stock != 0)
                     {
                         foreach (Photocard photo in allPhoto)
                         {
@@ -224,12 +229,37 @@ namespace UI
                             }
                         }
                         // Console.WriteLine($"PhotocardId: {invent.PhotocardId} Photocard: {setName} Price: {setPrice} Stock: {invent.Stock}");
-                        tempCatalog.Add(new Product(invent.PhotocardId, setName, setPrice, invent.Stock));
+                        tempCatalog.Add(new Product(invent.PhotocardId, setName, setPrice));
                     }
                 }
 
             Product selectedInventory = _customerService.SelectAPhoto("Pick a photo to add to cart or type [x] to cancel.", tempCatalog);
 
+            DisplayCart.cart.Add(selectedInventory);
+            Console.WriteLine(DisplayCart.cart[0]);
+        }
+
+        public void ViewCart()
+        {
+            if (DisplayCart.cart.Count == 0)
+            {
+                Console.WriteLine("Your shopping cart is empty!");
+            } else
+            {
+                decimal total = 0;
+                Console.WriteLine("----------");
+                Console.WriteLine("SHOPPING CART ITEMS");
+                for (int i = 0; i < DisplayCart.cart.Count; i++)
+                {
+                    Console.WriteLine(DisplayCart.cart[i]);
+                }
+                total = DisplayCart.cart.Count *5;
+                Console.WriteLine("----------");
+                Console.WriteLine($"Your total is {total}.");
+                Console.WriteLine($"Do you wish to check out?");
+
+
+            }
         }
     }
 }
