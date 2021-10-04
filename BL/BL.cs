@@ -19,9 +19,9 @@ namespace RBBL
             return _repo.GetAllCustomers();
         }
 
-        public List<Inventory> GetAllInventory(int id)
+        public List<Inventory> GetAllInventory()
         {
-            return _repo.GetAllInventory(id);
+            return _repo.GetAllInventory();
         }
 
         public Customer AddCustomer(Customer custom)

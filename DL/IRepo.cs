@@ -8,7 +8,7 @@ namespace DL
         List<Customer> GetAllCustomers();
         Customer AddCustomer(Customer custom);
         Customer UpdateCustomer(Customer customToUpdate, string input);
-        List<Inventory> GetAllInventory(int id);
+        List<Inventory> GetAllInventory();
         List<Photocard> GetAllPhotocard();
         Inventory UpdateInventory(Inventory inventoryToUpdate, int input, int input2);
         List<Order> GetAllOrders();

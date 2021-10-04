@@ -107,7 +107,7 @@ namespace DL
             ).ToList();
         }
 
-        public List<Model.Inventory> GetAllInventory(int id)
+        public List<Model.Inventory> GetAllInventory()
         {
             return _context.Inventories.Select(
                 inventories => new Model.Inventory()

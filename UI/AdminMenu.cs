@@ -68,7 +68,7 @@ namespace UI
             string input = "";
             string stockInput = "";
             int stockInt = 0;
-            List<Inventory> allInvent = _bl.GetAllInventory(0);
+            List<Inventory> allInvent = _bl.GetAllInventory();
             Inventory selectedInventory = _adminService.SelectInventory("Select an item you wish to restock or type [x] to cancel.", allInvent);
 
             if (selectedInventory != null)

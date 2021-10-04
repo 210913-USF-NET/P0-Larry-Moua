@@ -226,7 +226,7 @@ namespace UI
             Console.WriteLine($"-----INVENTORY AT {DisplayCustomer.Warehouse}-----");
             List<Product> tempCatalog = new List<Product>();
             List<Photocard> allPhoto = _bl.GetAllPhotocard();
-            List<Inventory> allInvent = _bl.GetAllInventory(id);
+            List<Inventory> allInvent = _bl.GetAllInventory();
                 foreach (Inventory invent in allInvent)
                 {
                     if (id == invent.WarehouseId && invent.Stock != 0)
@@ -294,7 +294,7 @@ namespace UI
                                 switch(input2)
                                 {
                                     case "y":
-                                        List<Inventory> allInvent = _bl.GetAllInventory(0);
+                                        List<Inventory> allInvent = _bl.GetAllInventory();
                                         for (int i = 0; i < DisplayCart.cart.Count; i++)
                                         {
                                             foreach (Inventory invent in allInvent)
